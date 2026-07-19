@@ -194,13 +194,13 @@ python UI/server.py
 - **Indexes** — keyword, alias, glossary, and page indexes.
 - **Ask** — ask natural-language questions and get grounded answers with citations.
 
-![3D knowledge graph across all documents](assets/KG_3d.png)
+<img src="assets/KG_3d.png" alt="3D knowledge graph across all documents" width="1919" height="941">
 *3D graph with concepts and relationships merged from all documents.*
 
-![2D node view with concept details](assets/2d_node_view.png)
+<img src="assets/2d_node_view.png" alt="2D node view with concept details" width="1919" height="941">
 *2D graph view with the concept detail fro one file*
 
-<img src="assets/Video.gif" alt="Knowledge Store Explorer" width="800">
+<img src="assets/Video.gif" alt="Knowledge Store Explorer" width="1919" height="941">
 
 
 ## Local Testing 
