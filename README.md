@@ -203,31 +203,6 @@ python UI/server.py
 <img src="assets/Video.gif" alt="Knowledge Store Explorer" width="1919" height="941">
 
 
-## Local Testing 
-
-Run tests from inside each package directory so imports resolve correctly:
-
-```bash
-# UDP
-cd libs
-pytest universal_document_parser/tests
-
-# Knowledge Builder
-cd libs/Knowledge_Builder
-pytest tests
-
-# Query Pipeline
-cd libs/Query_Pipeline
-pytest tests
-```
-
-## Module READMEs
-
-- [`libs/README.md`](libs/README.md) — Universal Document Parser
-- [`libs/Knowledge_Builder/README.md`](libs/Knowledge_Builder/README.md) — Knowledge Builder
-- [`libs/Query_Pipeline/README.md`](libs/Query_Pipeline/README.md) — Query Pipeline
-- [`UI/README.md`](UI/README.md) — Knowledge Store Explorer UI
-
 ## License
 
 MIT
