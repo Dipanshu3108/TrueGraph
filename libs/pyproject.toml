@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "universal-document-parser"
+version = "0.1.0"
+description = "Production-grade, CPU-efficient document parser for PDF, DOCX, PPTX, PPT, and Markdown."
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.9"
+authors = [
+    {name = "UniversalDocumentParser Team"}
+]
+keywords = ["pdf", "docx", "pptx", "ppt", "markdown", "parser", "ocr"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Text Processing",
+]
+dependencies = [
+    "pymupdf>=1.23.0",
+    "pdfplumber>=0.10.0",
+    "pdfminer.six>=20221105",
+    "python-docx>=0.8.11",
+    "python-pptx>=0.6.21",
+    "Pillow>=9.0.0",
+    "pytesseract>=0.3.10",
+    "mammoth>=1.5.0",
+    "beautifulsoup4>=4.11.0",
+    "lxml>=4.9.0",
+    "markdown>=3.4.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=22.0.0",
+    "mypy>=1.0.0",
+]
+
+[project.scripts]
+udp = "universal_document_parser.cli:main"
+universal-document-parser = "universal_document_parser.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["universal_document_parser*"]
+
+[tool.black]
+line-length = 100
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_configs = true

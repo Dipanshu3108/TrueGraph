@@ -1,0 +1,14 @@
+.venv/
+image_storage
+input
+knowledge_store
+Local_personal_observation
+ParsedOutput
+k_builder_test.py
+parser.py
+personal.md
+query_test.py
+__pycache__/
+node_modules/
+Usage
+.env

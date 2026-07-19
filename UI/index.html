@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Knowledge Store</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css?v=8" />
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-icon">◈</div>
+        <div class="brand-text">
+          <h1>Graph Explorer</h1>
+          <p>Knowledge Store</p>
+        </div>
+      </div>
+
+      <div class="doc-picker">
+        <label id="doc-select-label">Document</label>
+        <div class="custom-select" id="doc-select">
+          <button type="button" class="custom-select-trigger" id="doc-select-trigger"
+                  aria-haspopup="listbox" aria-expanded="false" aria-labelledby="doc-select-label doc-select-value">
+            <span class="custom-select-value placeholder" id="doc-select-value">Choose a document…</span>
+            <span class="custom-select-arrow" aria-hidden="true"></span>
+          </button>
+          <ul class="custom-select-list" id="doc-select-list" role="listbox" aria-labelledby="doc-select-label"></ul>
+        </div>
+      </div>
+
+      <div class="registry" id="registry-stats">
+        <span class="registry-loading">Loading…</span>
+      </div>
+    </header>
+
+    <main class="content">
+      <div id="empty-state" class="empty-state">
+        <div class="empty-icon">◈</div>
+        <h2>Select a document to begin</h2>
+        <p>Pick a document from the dropdown above — or choose <strong>All documents</strong> to see the combined knowledge graph.</p>
+      </div>
+
+      <div id="document-view" class="document-view hidden">
+        <header class="doc-header">
+          <h1 id="doc-title">Document Title</h1>
+          <p id="doc-subtitle" class="subtitle"></p>
+        </header>
+
+        <nav class="tabs">
+          <button class="tab-btn active" data-tab="overview">Overview</button>
+          <button class="tab-btn" data-tab="concepts">Concepts</button>
+          <button class="tab-btn" data-tab="graph">Graph</button>
+          <button class="tab-btn" data-tab="pages">Pages</button>
+          <button class="tab-btn" data-tab="indexes">Indexes</button>
+          <button class="tab-btn" data-tab="ask">Ask</button>
+        </nav>
+
+        <section id="tab-overview" class="tab-panel active">
+          <div class="stats-grid" id="overview-stats"></div>
+          <div class="panel" id="overview-metadata"></div>
+        </section>
+
+        <section id="tab-concepts" class="tab-panel">
+          <div class="toolbar">
+            <div class="search-input">
+              <input type="text" id="concept-search" placeholder="Search concepts…" />
+            </div>
+            <span id="concept-count" class="count-badge"></span>
+          </div>
+          <div class="concept-grid" id="concept-grid"></div>
+        </section>
+
+        <section id="tab-graph" class="tab-panel">
+          <div class="graph-layout">
+            <div id="graph-container"></div>
+            <aside id="graph-detail" class="detail-panel hidden">
+              <div class="detail-head">
+                <h3 id="detail-title">Node details</h3>
+                <button id="detail-close" class="detail-close" aria-label="Close">&times;</button>
+              </div>
+              <div id="detail-body" class="detail-body"></div>
+            </aside>
+
+            <aside id="ask-panel" class="detail-panel hidden">
+              <div class="detail-head">
+                <h3>Ask a question</h3>
+              </div>
+              <div class="detail-body">
+                <div class="ask-input-wrap">
+                  <textarea id="ask-input" rows="3" placeholder="Ask something about this document…"></textarea>
+                  <button id="ask-btn" type="button">Ask</button>
+                </div>
+                <div id="ask-status" class="ask-status hidden"></div>
+                <div id="ask-answer" class="ask-answer hidden"></div>
+                <div id="ask-citations" class="ask-citations hidden"></div>
+              </div>
+            </aside>
+          </div>
+        </section>
+
+        <section id="tab-pages" class="tab-panel">
+          <div class="toolbar">
+            <span id="page-count" class="count-badge"></span>
+          </div>
+          <div class="page-list" id="page-list"></div>
+        </section>
+
+        <section id="tab-indexes" class="tab-panel">
+          <div class="index-nav" id="index-nav"></div>
+          <div id="index-content" class="index-content"></div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div id="concept-modal" class="modal hidden">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close">&times;</button>
+      <div id="concept-modal-body"></div>
+    </div>
+  </div>
+
+  <script src="node_modules/d3-binarytree/dist/d3-binarytree.min.js"></script>
+  <script src="node_modules/d3-quadtree/dist/d3-quadtree.min.js"></script>
+  <script src="node_modules/d3-octree/dist/d3-octree.min.js"></script>
+  <script src="node_modules/d3-dispatch/dist/d3-dispatch.min.js"></script>
+  <script src="node_modules/d3-timer/dist/d3-timer.min.js"></script>
+  <script src="node_modules/d3-force-3d/dist/d3-force-3d.min.js"></script>
+  <script src="node_modules/force-graph/dist/force-graph.min.js"></script>
+  <script src="node_modules/3d-force-graph/dist/3d-force-graph.min.js"></script>
+  <script src="graph.js?v=7"></script>
+  <script src="app.js?v=8"></script>
+</body>
+</html>
