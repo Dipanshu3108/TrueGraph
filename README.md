@@ -200,7 +200,7 @@ python UI/server.py
 ![2D node view with concept details](assets/2d_node_view.png)
 *2D graph view with the concept detail fro one file*
 
-![Knowledge Store Explorer](assets/Video.gif)
+<img src="assets/Video.gif" alt="Knowledge Store Explorer" width="800">
 
 
 ## Local Testing 
