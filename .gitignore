@@ -5,7 +5,7 @@ knowledge_store
 Local_personal_observation
 ParsedOutput
 k_builder_test.py
-parser.py
+parser_TEST.py
 personal.md
 query_test.py
 __pycache__/
