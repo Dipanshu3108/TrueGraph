@@ -35,7 +35,7 @@ _NO_RESULTS_ANSWER = (
 )
 
 #: Optional directory for saving stage outputs for observation/debugging.
-_OBSERVATION_DIR = Path("D:\\PROJECTS\\OKF_RAG_V0.0.0\\Local_personal_observation")
+_OBSERVATION_DIR = Path("path/to/observation_dir")  # Replace with your desired path
 
 
 def _save_stage_output(stage_name: str, data: any) -> None:
@@ -87,25 +87,25 @@ def ask(query: str, scope: Union[str, list[str]], config: dict) -> QueryResult:
 
     # 1. Scope Resolver.
     resolved_scope = resolve_scope(scope, knowledge_path)
-    _save_stage_output("01_resolved_scope", resolved_scope)
+    # _save_stage_output("01_resolved_scope", resolved_scope)
 
     # 2. Query Understanding (LLM).
     intent = understand_query(query, config, tracker=tracker)
-    _save_stage_output("02_intent", intent)
+    # _save_stage_output("02_intent", intent)
 
     # 3. Retrieval Planner.
     plan = build_retrieval_plan(intent, resolved_scope)
     plan.relationship_depth = relationship_depth
-    _save_stage_output("03_plan", plan)
+    # _save_stage_output("03_plan", plan)
 
     # 4. Deterministic Retrieval.
     candidates = retrieve_candidates(plan, knowledge_path)
-    _save_stage_output("04_candidates", candidates)
+    # _save_stage_output("04_candidates", candidates)
 
     # 5. Candidate Ranking (BM25 + alias + graph, fused via RRF).
     ranked = rank_candidates(candidates, intent, knowledge_path, plan.relationship_depth)
     ranked = ranked[:top_k_concepts]
-    _save_stage_output("05_ranked", ranked)
+    # _save_stage_output("05_ranked", ranked)
     logger.info(
         "Query pipeline: %d candidate(s) retrieved, %d kept after ranking.",
         len(candidates),
@@ -119,22 +119,22 @@ def ask(query: str, scope: Union[str, list[str]], config: dict) -> QueryResult:
     # 6. Evidence Loader — raw pages for the top-ranked candidates only,
     #    relevance-scored against the intent and capped to the strongest pages.
     evidence = load_evidence(ranked, knowledge_path, top_k_evidence_pages, intent=intent)
-    _save_stage_output("06_evidence", evidence)
+    # _save_stage_output("06_evidence", evidence)
 
     # 7. Context Builder — two-tier, hard token ceiling.
     context = build_context(ranked, evidence, max_context_tokens)
-    _save_stage_output("07_context", context)
+    # _save_stage_output("07_context", context)
 
     # 8. Answer Generator (LLM, context-only).
     logger.info("Stage 8: Generating answer (context_size=%d chars)...", len(context))
     answer = generate_answer(query, context, config, tracker=tracker)
-    _save_stage_output("08_answer", answer)
+    # _save_stage_output("08_answer", answer)
     logger.debug("Generated answer length: %d chars", len(answer))
 
     # 9. Citation Builder.
     logger.info("Stage 9: Building citations...")
     citations = build_citations(ranked, evidence)
-    _save_stage_output("09_citations", citations)
+    # _save_stage_output("09_citations", citations)
     logger.info("Built %d citation(s).", len(citations))
 
     tracker.write_log()
