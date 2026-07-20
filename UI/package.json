@@ -11,7 +11,8 @@
   "dependencies": {
     "3d-force-graph": "^1.80.0",
     "d3-force-3d": "^3.0.6",
-    "force-graph": "^1.51.4"
+    "force-graph": "^1.51.4",
+    "vis-network": "^10.1.0"
   },
   "devDependencies": {
     "vite": "^5.0.0"
