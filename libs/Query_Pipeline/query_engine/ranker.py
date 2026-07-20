@@ -9,11 +9,6 @@ Three independently computable signals, fused with RRF (k = 60):
 3. Graph proximity — candidates ranked by relationship distance from the
    query's seed concepts, closer = better rank.
 
-Note on the signature: the design spec lists ``rank_candidates(candidates,
-intent)``, but its own Ranking Logic requires the keyword index and the
-relationship graph, neither of which is reachable from that signature. This
-module therefore also takes ``knowledge_path`` and ``relationship_depth`` —
-the minimal extension that keeps every signal exactly as specified.
 """
 
 import logging
